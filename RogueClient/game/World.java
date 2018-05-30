@@ -18,4 +18,13 @@ public class World {
 		}
 	}
 	
+	public Obj getObjectsAt(int x, int y) {
+		for (Chunk c:chunks) {
+			if (Math.floor(x / Chunk.SIZE) == c.getX() && Math.floor(y / Chunk.SIZE) == c.getY()) {
+				return c.getObjectAt(x, y);
+			}
+		}
+		return null;
+	}
+	
 }
