@@ -1,9 +1,11 @@
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.util.Scanner;
 
 import javax.swing.JFrame;
+import javax.swing.JTextArea;
 import javax.swing.text.StyledDocument;
 
 public class Frame extends JFrame{
@@ -21,21 +23,23 @@ public class Frame extends JFrame{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setVisible(true);
-	
+//		setLayout(new BorderLayout());
+		
+//		add(screen,BorderLayout.CENTER);
 		add(screen);
 		pack();
 		
-		
 		String[][] test = new String[5][5];
-		screen.init(test);
+		screen.setupenzo(test);
 		
-		Scanner s = new Scanner(System.in);
-		int temp1 = s.nextInt();
-		int temp2 = s.nextInt();
-		String temp3 = s.next();
-		test[temp1][temp2] = temp3;
 		
-		screen.printArray(test);
+//		Scanner s = new Scanner(System.in);
+//		int temp1 = s.nextInt();
+//		int temp2 = s.nextInt();
+//		String temp3 = s.next();
+//		test[temp1][temp2] = temp3;
+//		
+//		screen.printArray(test);
 		
 		
 		

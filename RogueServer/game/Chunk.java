@@ -53,5 +53,13 @@ public class Chunk implements Serializable{
 	public int getY() {
 		return chunkY;
 	}
+
+	public void update() {
+		for (int x = 0; x < objects.length; x++) {
+			for (int y = 0; y < objects[x].length; y++) {
+				objects[x][y].update();
+			}	
+		}
+	}
 	
 }

@@ -5,7 +5,7 @@ public class Obj {
 	private int x;
 	private int y;
 	
-	private char display = (char) 0;
+	private char display = '*';
 	
 	protected HashMap<String, Action> actions = new HashMap<>();
 
