@@ -13,8 +13,14 @@ public class Screen extends JTextPane{
 	private static final long serialVersionUID = 1L;
 	
 	private int fontWidth = -1;
+<<<<<<< HEAD
 	private int fontHeight = 12;
 	private Style style; 
+=======
+	private int fontHeight = -1;
+
+	private Style style;
+>>>>>>> refs/remotes/origin/master
 	private Font font = new Font("monospaced", Font.PLAIN, 12);
 	
 	public Screen() {
@@ -59,7 +65,24 @@ public class Screen extends JTextPane{
 			fontWidth = fontMetrics.charWidth('l');
 		}
 		return fontWidth;
+<<<<<<< HEAD
 		
+=======
+	}
+
+	public int getFontHeigt() {
+		if (fontHeight == -1) {
+			BufferedImage bf = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
+			FontMetrics fontMetrics = bf.createGraphics().getFontMetrics(font);
+			fontHeight = fontMetrics.charWidth('l');
+		}
+		return fontHeight;
+
+	}
+	
+	public int getWidth() {
+		return 0;
+>>>>>>> refs/remotes/origin/master
 	}
 	
 	public int getFontHeight() {

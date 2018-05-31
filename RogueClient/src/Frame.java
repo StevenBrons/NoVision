@@ -26,15 +26,28 @@ public class Frame extends JFrame{
 		pack();
 		
 		
+<<<<<<< HEAD
 		String[][] testArray = new String[5][5];
 		screen.init(testArray);
 
+=======
+		String[][] test = new String[5][5];
+		screen.init(test);
+		
+>>>>>>> refs/remotes/origin/master
 		Scanner s = new Scanner(System.in);
 		int temp1 = s.nextInt();
 		int temp2 = s.nextInt();
 		String temp3 = s.next();
+<<<<<<< HEAD
 		testArray[temp1][temp2] = temp3;
 		screen.printArray(testArray);
+=======
+		test[temp1][temp2] = temp3;
+		
+		screen.printArray(test);
+		
+>>>>>>> refs/remotes/origin/master
 		
 		
 	}

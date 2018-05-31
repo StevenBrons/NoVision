@@ -1,5 +1,4 @@
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class Chunk implements Serializable{
 
@@ -18,8 +17,17 @@ public class Chunk implements Serializable{
 	public Chunk(int chunkX,int chunkY) {
 		this.chunkX = chunkX;
 		this.chunkY = chunkY;
+		clear();
 	}
 	
+	private void clear() {
+		for (int x = 0; x < objects.length; x++) {
+			for (int y = 0; y < objects[x].length; y++) {
+				objects[x][y] = new Null();
+			}	
+		}
+	}
+
 	public void setObjectAt(Obj obj, int x, int y) {
 		int relX = x - (SIZE * x);
 		int relY = y - (SIZE * y);

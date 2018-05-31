@@ -1,8 +1,6 @@
-public class Player{
+public class Player extends Obj{
 
-	private int x = 0;
-	private int y = 0;
-	private Client client;
+	private transient Client client;
 	
 	public Player(Client client) {
 		this.client = client;
