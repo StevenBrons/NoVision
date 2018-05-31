@@ -2,9 +2,9 @@ import java.util.ArrayList;
 
 public class World {
 
-	private static ArrayList<Chunk> chunks = new ArrayList<>();
+	private ArrayList<Chunk> chunks = new ArrayList<>();
 	
-	public static void setChunk(Chunk chunk) {
+	public void setChunk(Chunk chunk) {
 		for (int i = 0; i < chunks.size(); i++) {
 			if (chunks.get(i).getX() == chunk.getX() && chunks.get(i).getY() == chunk.getY()) {
 				chunks.set(i, chunk);
@@ -22,5 +22,4 @@ public class World {
 		}
 		return null;
 	}
-	
 }
