@@ -11,7 +11,7 @@ public class Frame extends JFrame{
 	private static final long serialVersionUID = 1L;
 	
 	private Screen screen = new Screen();
-	private StyledDocument doc = screen.getStyledDocument();
+//	private StyledDocument doc = screen.getStyledDocument();
 //	Style style = textpane.addStyle("Style", null);
 	
 	public Frame() {
@@ -26,8 +26,8 @@ public class Frame extends JFrame{
 		pack();
 		
 		
-		String[][] test = new String[screen.getWidth()][screen.getHeight()];
-		screen.setupenzo(test);
+		String[][] test = new String[5][5];
+		screen.init(test);
 		
 		Scanner s = new Scanner(System.in);
 		int temp1 = s.nextInt();
