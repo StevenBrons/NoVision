@@ -1,7 +1,5 @@
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.util.Scanner;
 
 import javax.swing.JFrame;
 
@@ -22,9 +20,7 @@ public class Frame extends JFrame{
 		setVisible(true);
 		setLayout(new BorderLayout());
 		add(screen, BorderLayout.CENTER);
-		
 		pack();
-		
 		
 		String[][] testArray = new String[5][5];
 		screen.init(testArray);

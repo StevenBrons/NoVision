@@ -25,17 +25,14 @@ public class Screen extends JTextPane{
 	}
 	
 	public void printArray(String[][] world) {
-		clearScreen();
 		StyledDocument doc = getStyledDocument();
 
 		for (int j = world.length; j > 0; j--) {
-
 			try {
 				doc.insertString(0, "\n", null);
 			} catch (BadLocationException e) {
 				e.printStackTrace();
 			}
-
 			for (int i = world.length; i > 0; i--) {
 				try {
 					doc.insertString(0, world[i - 1][j - 1], null);

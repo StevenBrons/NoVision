@@ -35,4 +35,7 @@ public class Obj {
 	public boolean isSolid() {
 		return false;
 	}
+
+	public void update() {
+	}
 }

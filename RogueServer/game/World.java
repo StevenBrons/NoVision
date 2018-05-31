@@ -22,4 +22,10 @@ public class World {
 		}
 		return null;
 	}
+
+	public void update() {
+		chunks.forEach((c) -> {
+			c.update();
+		});
+	}
 }
