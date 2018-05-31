@@ -29,12 +29,12 @@ public class Frame extends JFrame{
 		String[][] test = new String[screen.getWidth()][screen.getHeight()];
 		screen.setupenzo(test);
 		
-		
 		Scanner s = new Scanner(System.in);
 		int temp1 = s.nextInt();
 		int temp2 = s.nextInt();
 		String temp3 = s.next();
 		test[temp1][temp2] = temp3;
+		
 		screen.printArray(test);
 		
 		
