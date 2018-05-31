@@ -54,7 +54,8 @@ public class Client {
 			Join join = (Join) o;
 			player = new Player(this);
 			ServerMain.game.addPlayer(player);
-			output(new Chunk());
+			output(player);
+			output(new Chunk(0,0));
 			break;
 		default:
 			System.out.println("Unknown input class type: " + o.getClass().getName());

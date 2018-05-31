@@ -61,6 +61,9 @@ public class Connection {
 		case "Chunk":
 			World.setChunk(((Chunk) o));
 			break;
+		case "Player":
+			Game.player = ((Player) o);
+			break;
 		default:
 			System.err.println(o.getClass().getName());
 			break;
