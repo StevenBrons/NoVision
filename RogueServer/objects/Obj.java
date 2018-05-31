@@ -7,7 +7,7 @@ public class Obj {
 	
 	private char display = (char) 0;
 	
-	protected HashMap<String, Action> actions = new HashMap<>();
+	private HashMap<String, Action> actions = new HashMap<>();
 
 	public Obj() {
 	}
