@@ -1,10 +1,9 @@
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
 import java.util.Scanner;
 
 import javax.swing.JFrame;
-import javax.swing.text.StyledDocument;
 
 public class Frame extends JFrame{
 
@@ -21,22 +20,21 @@ public class Frame extends JFrame{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setVisible(true);
-	
-		add(screen);
+		setLayout(new BorderLayout());
+		add(screen, BorderLayout.CENTER);
+		
 		pack();
 		
 		
-		String[][] test = new String[5][5];
-		screen.init(test);
-		
-		
+		String[][] testArray = new String[5][5];
+		screen.init(testArray);
+
 		Scanner s = new Scanner(System.in);
 		int temp1 = s.nextInt();
 		int temp2 = s.nextInt();
 		String temp3 = s.next();
-		test[temp1][temp2] = temp3;
-		screen.printArray(test);
-		
+		testArray[temp1][temp2] = temp3;
+		screen.printArray(testArray);
 		
 		
 	}
