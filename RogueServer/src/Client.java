@@ -52,7 +52,8 @@ public class Client {
 		switch (o.getClass().getName()) {
 		case "Join":
 			Join join = (Join) o;
-			player = new Player(this);
+			player = new Player();
+			player.client = this;
 			ServerMain.game.addPlayer(player);
 			output(player);
 			output(new Chunk(0,0));

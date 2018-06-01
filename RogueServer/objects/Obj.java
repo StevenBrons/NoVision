@@ -1,7 +1,9 @@
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class Obj {
+public class Obj implements Serializable{
 
+	private static final long serialVersionUID = 1L;
 	private int x;
 	private int y;
 	
@@ -30,6 +32,10 @@ public class Obj {
 	
 	public char getDisplay() {
 		return display;
+	}
+	
+	public HashMap<String, Action> getActions() {
+		return actions;
 	}
 	
 	public boolean isSolid() {

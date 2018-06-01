@@ -12,7 +12,7 @@ public class UserInput implements KeyListener{
 		String action = KeyPreferences.getAction(e.getKeyCode());
 		if (action != null) {
 			Player p = ClientMain.game.player;
-			p.actions.get(action).execute(p);
+			p.getActions().get(action).execute(p);
 		}
 	}
 

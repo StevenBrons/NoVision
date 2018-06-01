@@ -7,4 +7,12 @@ public class Game {
 	public Game() {
 	}
 	
+	public World getWorld() {
+		return world;
+	}
+	
+	public Player getPlayer() {
+		return player;
+	}
+	
 }

@@ -1,10 +1,9 @@
 public class Player extends Obj{
 
-	private transient Client client;
+	private static final long serialVersionUID = 1L;
+	public transient Client client;
 	
-	
-	public Player(Client client) {
-		this.client = client;
+	public Player() {
 	}
 
 	public void destroy() {

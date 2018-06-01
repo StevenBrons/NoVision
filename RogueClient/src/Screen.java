@@ -8,36 +8,48 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Style;
 import javax.swing.text.StyledDocument;
 
-public class Screen extends JTextPane{
+public class Screen extends JTextPane {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private int fontWidth = -1;
-	private Style style; 
+	private int fontHeight = 12;
+	private Style style;
 	private Font font = new Font("monospaced", Font.PLAIN, 12);
+
+	World w = new World();
+	Game g = new Game();
 	
 	public Screen() {
 		setForeground(Color.WHITE);
 		setBackground(Color.BLACK);
-//		addStyle("style", null);
-//		setFont(new Font("monospaced", Font.PLAIN, 12));
-//		setFont(font);
-//		System.out.println(getFontWidth());
-		
-		
+		addStyle("style", null);
+		setFont(font);
 	}
-	
+
 	public void printArray(String[][] world) {
+		clearScreen();
 		StyledDocument doc = getStyledDocument();
-		for (int j = world.length; j >= 0; j--) {
+		String[][] view = new String[getViewWidth()][getViewHeight()];
+
+		for (int j = world.length; j > 0; j--) {
 			try {
 				doc.insertString(0, "\n", null);
 			} catch (BadLocationException e) {
 				e.printStackTrace();
 			}
-			for (int i = world.length; i >= 0; i--) {
+			for (int i = world.length; i > 0; i--) {
 				try {
-					doc.insertString(0, Integer.toString(i), null);
+					if (ClientMain.connection.connected) {
+						System.out.println("bleep bloop");
+						w.getObjectAt(i + g.getPlayer().getX(), j + g.getPlayer().getY());
+						System.out.println(w.getObjectAt(i + g.getPlayer().getX(), j + g.getPlayer().getY()));
+					}
+					
+					doc.insertString(0, world[i - 1][j - 1], null);
+					
+					
+//					doc.insertString(0, view[i - 1][j - 1], null);
 				} catch (BadLocationException e) {
 					e.printStackTrace();
 				}
@@ -46,6 +58,9 @@ public class Screen extends JTextPane{
 
 	}
 
+	public void clearScreen() {
+		setText("");
+	}
 
 	public int getFontWidth() {
 		if (fontWidth == -1) {
@@ -54,21 +69,30 @@ public class Screen extends JTextPane{
 			fontWidth = fontMetrics.charWidth('l');
 		}
 		return fontWidth;
-		
 	}
-	
-	public void setupenzo(String[][] world) {
+
+	public int getFontHeight() { //dit kan naar beneden afgerond worden, willen we wat padding toevoegen? (gwn met +x erachter toch?)
+		return fontHeight;
+
+	}
+
+	public int getViewWidth() {
+		return (int) Math.floor(getWidth() / getFontWidth());
+
+	}
+
+	public int getViewHeight() {
+		return (int) Math.floor(getHeight() / getFontHeight());
+	}
+
+	public void init(String[][] world) {
+		for (int i = 0; i < world.length; i++) {
+			for (int j = 0; j < world[i].length; j++) {
+				world[i][j] = ".";
+			}
+		}
 		printArray(world);
-//		if (getWidth() != 0) {
-//			for (int i = 0; i < world.length; i++) {
-//				for (int j = 0; j < world[i].length; j++) {
-//					world[i][j] = ".";
-//				}
-//			}
-//
-//		}
-//		System.out.println(getWidth() + "   " + getHeight());
+		System.out.println(getViewWidth() + "   " + getViewHeight());
 	}
-	
-	
+
 }
