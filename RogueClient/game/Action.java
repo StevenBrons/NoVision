@@ -6,4 +6,7 @@ public class Action {
 	public String getName() {
 		return name;
 	}
+	
+	public void execute(Obj executor,String...args) {
+	}
 }

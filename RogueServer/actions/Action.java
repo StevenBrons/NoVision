@@ -7,6 +7,6 @@ public class Action {
 		return name;
 	}
 	
-	public void execute(Obj executor) {
+	public void execute(Obj executor,String...args) {
 	}
 }

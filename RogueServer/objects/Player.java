@@ -2,6 +2,7 @@ public class Player extends Obj{
 
 	private transient Client client;
 	
+	
 	public Player(Client client) {
 		this.client = client;
 	}
