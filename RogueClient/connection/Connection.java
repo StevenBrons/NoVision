@@ -34,12 +34,14 @@ public class Connection {
 							input(in.readObject());
 						} catch (ClassNotFoundException | IOException e) {
 							e.printStackTrace();
+							return;
 						}
 					}
 
 				} catch (IOException e) {
 					connected = false;
 					e.printStackTrace();
+					return;
 				}
 			}
 		});
@@ -49,6 +51,7 @@ public class Connection {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
+				return;
 			}
 			if (connected) {
 				break;

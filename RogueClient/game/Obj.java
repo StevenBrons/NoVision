@@ -1,13 +1,15 @@
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class Obj {
+public class Obj implements Serializable{
 
+	private static final long serialVersionUID = 1L;
 	private int x;
 	private int y;
 	
-	private char display = '*';
+	private char display = (char) 0;
 	
-	protected HashMap<String, Action> actions = new HashMap<>();
+	private HashMap<String, Action> actions = new HashMap<>();
 
 	public Obj() {
 	}
@@ -34,5 +36,8 @@ public class Obj {
 	
 	public boolean isSolid() {
 		return false;
+	}
+
+	public void update() {
 	}
 }
