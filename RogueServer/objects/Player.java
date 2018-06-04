@@ -1,4 +1,4 @@
-public class Player extends Obj{
+public class Player extends Entity{
 
 	private static final long serialVersionUID = 1L;
 	public transient Client client;
@@ -13,6 +13,10 @@ public class Player extends Obj{
 	@Override
 	public boolean equals(Object obj) {
 		return super.equals(obj);
+	}
+
+	public void execute(String name,String...args) {
+		getActions().get(name).invoke(this, args);
 	}
 	
 }

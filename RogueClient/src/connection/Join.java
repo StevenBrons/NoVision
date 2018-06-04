@@ -1,3 +1,4 @@
+package connection;
 import java.io.Serializable;
 
 public class Join implements Serializable{
@@ -8,8 +9,8 @@ public class Join implements Serializable{
 	
 	private String loginId;
 	
-	public Join(String loginId) {
-		this.loginId = loginId;
+	public Join() {
+		this.loginId = Math.floor(Math.random() * 1000) + "";
 	}
 	
 	public String getLoginId() {

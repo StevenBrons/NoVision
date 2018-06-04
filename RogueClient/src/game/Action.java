@@ -1,10 +1,10 @@
+package game;
 import java.io.Serializable;
 
 public interface Action extends Serializable{
-
+	
 	static final long serialVersionUID = 1L;
 
-	
 	public String getTitle();
 	public default String getDescription() {
 		return "";

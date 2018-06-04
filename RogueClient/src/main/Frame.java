@@ -1,3 +1,4 @@
+package main;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
@@ -8,8 +9,6 @@ public class Frame extends JFrame{
 	private static final long serialVersionUID = 1L;
 	
 	private Screen screen = new Screen();
-//	private StyledDocument doc = screen.getStyledDocument();
-//	Style style = textpane.addStyle("Style", null);
 	
 	public Frame() {
 		setSize(960, 540);
@@ -21,10 +20,13 @@ public class Frame extends JFrame{
 		setLayout(new BorderLayout());
 		add(screen, BorderLayout.CENTER);
 		pack();
-		
+
 		String[][] testArray = new String[500][500];
 		screen.init(testArray);
-		
 	}
 
+	public Screen getScreen() {
+		return screen;
+	}
+	
 }

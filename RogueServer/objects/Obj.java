@@ -38,6 +38,10 @@ public class Obj implements Serializable{
 		return actions;
 	}
 	
+	public void addAction(String key, Action action) {
+		actions.put(key, action);
+	}
+	
 	public boolean isSolid() {
 		return false;
 	}

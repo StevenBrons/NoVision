@@ -1,3 +1,4 @@
+package game;
 import java.io.Serializable;
 import java.util.HashMap;
 
@@ -34,14 +35,18 @@ public class Obj implements Serializable{
 		return display;
 	}
 	
-	public boolean isSolid() {
-		return false;
-	}
-
 	public HashMap<String, Action> getActions() {
 		return actions;
 	}
 	
+	public void addAction(String key, Action action) {
+		actions.put(key, action);
+	}
+	
+	public boolean isSolid() {
+		return false;
+	}
+
 	public void update() {
 	}
 }

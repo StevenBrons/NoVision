@@ -58,6 +58,10 @@ public class Client {
 			output(player);
 			output(new Chunk(0,0));
 			break;
+		case "Event":
+			Event event = (Event) o;
+			player.execute(event.getName(),event.getArgs());
+			break;
 		default:
 			System.out.println("Unknown input class type: " + o.getClass().getName());
 			break;

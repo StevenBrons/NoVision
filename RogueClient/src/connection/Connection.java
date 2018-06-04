@@ -1,9 +1,15 @@
+package connection;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 import com.sun.security.ntlm.Client;
+
+import game.Chunk;
+import game.Player;
+import game.World;
+import main.ClientMain;
 
 public class Connection {
 
@@ -13,7 +19,7 @@ public class Connection {
 	public ObjectOutputStream out;
 	public ObjectInputStream in;
 
-	boolean connected = false;
+	public boolean connected = false;
 	
 	public Connection() {
 		Thread t = new Thread(new Runnable() {
@@ -65,7 +71,7 @@ public class Connection {
 			World.setChunk(((Chunk) o));
 			break;
 		case "Player":
-			Game.player = ((Player) o);
+			ClientMain.getGame().setPlayer((Player) o);
 			break;
 		default:
 			System.err.println(o.getClass().getName());
