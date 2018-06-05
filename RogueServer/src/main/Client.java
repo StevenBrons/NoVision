@@ -1,3 +1,4 @@
+package main;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -5,6 +6,11 @@ import java.net.Socket;
 import java.nio.ByteBuffer;
 
 import javax.swing.ButtonGroup;
+
+import game.Chunk;
+import objects.Player;
+import transfer.A;
+import transfer.L;
 
 public class Client {
 
@@ -45,22 +51,20 @@ public class Client {
 			}
 		});
 		t.start();
-		ServerMain.game.start();
+		ServerMain.getGame().start();
 	}
 
 	public void input(Object o) {
 		switch (o.getClass().getName()) {
-		case "Join":
-			Join join = (Join) o;
-			player = new Player();
-			player.client = this;
-			ServerMain.game.addPlayer(player);
-			output(player);
-			output(new Chunk(0,0));
+		case "transfer.L":
+			L login = (L) o;
+			player = new Player(this);
+			ServerMain.getGame().addPlayer(player);
+			output(player.toClientObject());
+			output(new Chunk(0,0).toClientChunk());
 			break;
-		case "Event":
-			Event event = (Event) o;
-			player.execute(event.getName(),event.getArgs());
+		case "transfer.A":
+			player.execute((A) o);
 			break;
 		default:
 			System.out.println("Unknown input class type: " + o.getClass().getName());

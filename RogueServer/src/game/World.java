@@ -1,4 +1,7 @@
+package game;
 import java.util.ArrayList;
+
+import objects.Obj;
 
 public class World {
 
@@ -27,5 +30,9 @@ public class World {
 		chunks.forEach((c) -> {
 			c.update();
 		});
+	}
+
+	public ArrayList<Chunk> getChunks() {
+		return chunks;
 	}
 }

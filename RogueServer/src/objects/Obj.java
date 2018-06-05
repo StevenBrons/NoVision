@@ -1,9 +1,12 @@
+package objects;
 import java.io.Serializable;
 import java.util.HashMap;
 
-public class Obj implements Serializable{
+import game.Action;
+import transfer.O;
 
-	private static final long serialVersionUID = 1L;
+public class Obj{
+
 	private int x;
 	private int y;
 	
@@ -47,5 +50,9 @@ public class Obj implements Serializable{
 	}
 
 	public void update() {
+	}
+	
+	public O toClientObject() {
+		return new O(display, x, y);
 	}
 }

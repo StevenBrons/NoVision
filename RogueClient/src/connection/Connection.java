@@ -4,12 +4,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-import com.sun.security.ntlm.Client;
-
-import game.Chunk;
-import game.Player;
 import game.World;
 import main.ClientMain;
+import transfer.C;
+import transfer.P;
 
 public class Connection {
 
@@ -67,11 +65,11 @@ public class Connection {
 
 	public void input(Object o) {
 		switch (o.getClass().getName()) {
-		case "Chunk":
-			World.setChunk(((Chunk) o));
+		case "transfer.C":
+			World.setChunk(((C) o));
 			break;
-		case "Player":
-			ClientMain.getGame().setPlayer((Player) o);
+		case "transfer.P":
+			ClientMain.getGame().setPlayer((P) o);
 			break;
 		default:
 			System.err.println(o.getClass().getName());

@@ -1,7 +1,7 @@
 package main;
 import connection.Connection;
-import connection.Join;
 import game.Game;
+import transfer.L;
 
 public class ClientMain {
 
@@ -10,7 +10,7 @@ public class ClientMain {
 	private static Connection connection = new Connection();
 
 	public static void main(String[] args) {
-		getConnection().output(new Join());
+		getConnection().output(new L());
 		frame = new Frame();
 	}
 

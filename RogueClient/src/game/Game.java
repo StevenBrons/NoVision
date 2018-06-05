@@ -1,9 +1,11 @@
 package game;
 
+import transfer.P;
+
 public class Game {
 
 	private World world = new World();
-	private Player player;
+	private P player;
 	
 	public Game() {
 	}
@@ -12,11 +14,11 @@ public class Game {
 		return world;
 	}
 	
-	public void setPlayer(Player player) {
-		this.player = player;
+	public void setPlayer(P o) {
+		this.player = o;
 	}
 	
-	public Player getPlayer() {
+	public P getPlayer() {
 		return player;
 	}
 	

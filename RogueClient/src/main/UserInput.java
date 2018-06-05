@@ -2,7 +2,8 @@ package main;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import game.Player;
+import transfer.A;
+import transfer.P;
 
 public class UserInput implements KeyListener{
 
@@ -15,8 +16,7 @@ public class UserInput implements KeyListener{
 		ClientMain.output("Key pressed");
 		String action = KeyPreferences.getAction(e.getKeyCode());
 		if (action != null) {
-			Player p = ClientMain.getGame().getPlayer();
-			p.execute(p.getActions().get(action));
+			ClientMain.getConnection().output(new A(action,"","",0));
 		}
 	}
 

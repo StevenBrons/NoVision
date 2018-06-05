@@ -1,9 +1,7 @@
+package objects;
+import game.Action;
 
 public class Entity extends Obj {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 
 	public Entity() {
 		addMoveActions();
@@ -11,11 +9,6 @@ public class Entity extends Obj {
 
 	private void addMoveActions() {
 		addAction("moveNorth", new Action() {
-
-			/**
-			 * 
-			 */
-			private static final long serialVersionUID = 1L;
 
 			@Override
 			public String getTitle() {
@@ -28,7 +21,7 @@ public class Entity extends Obj {
 			}
 
 			@Override
-			public float getSuccessChance(Obj executor, String... args) {
+			public float getSuccessChance() {
 				return 0.5f;
 			}
 
