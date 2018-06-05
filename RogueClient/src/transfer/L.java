@@ -1,7 +1,13 @@
-package connection;
+package transfer;
+
 import java.io.Serializable;
 
-public class Join implements Serializable{
+/*
+ * This class is used to transfer login data
+*/
+
+
+public class L implements Serializable{
 	/**
 	 * 
 	 */
@@ -9,7 +15,7 @@ public class Join implements Serializable{
 	
 	private String loginId;
 	
-	public Join() {
+	public L() {
 		this.loginId = Math.floor(Math.random() * 1000) + "";
 	}
 	
