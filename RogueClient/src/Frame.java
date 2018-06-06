@@ -22,7 +22,7 @@ public class Frame extends JFrame{
 		add(screen, BorderLayout.CENTER);
 		pack();
 		
-		String[][] testArray = new String[500][500];
+		String[][] testArray = new String[150][150];
 		screen.init(testArray);
 		
 	}

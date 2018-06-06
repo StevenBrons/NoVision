@@ -41,9 +41,12 @@ public class Screen extends JTextPane {
 			for (int i = world.length; i > 0; i--) {
 				try {
 					if (ClientMain.connection.connected) {
-						System.out.println("bleep bloop");
 						w.getObjectAt(i + g.getPlayer().getX(), j + g.getPlayer().getY());
-						System.out.println(w.getObjectAt(i + g.getPlayer().getX(), j + g.getPlayer().getY()));
+						System.out.println(g.getPlayer().getX() + "   " + g.getPlayer().getY());
+						System.out.println((i - 1) + "   " + (j - 1));
+						if (i - 1 == g.getPlayer().getX() && j - 1 == g.getPlayer().getY()) {
+							world[i - 1][j - 1] = "@";
+						}
 					}
 					
 					doc.insertString(0, world[i - 1][j - 1], null);
