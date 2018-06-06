@@ -1,3 +1,4 @@
+package main;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
@@ -8,10 +9,6 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Style;
 import javax.swing.text.StyledDocument;
 
-import game.Game;
-import game.World;
-import main.ClientMain;
-
 public class Screen extends JTextPane {
 
 	private static final long serialVersionUID = 1L;
@@ -21,14 +18,13 @@ public class Screen extends JTextPane {
 	private Style style;
 	private Font font = new Font("monospaced", Font.PLAIN, 12);
 
-	World w = new World();
-	Game g = new Game();
-	
 	public Screen() {
 		setForeground(Color.WHITE);
 		setBackground(Color.BLACK);
 		addStyle("style", null);
 		setFont(font);
+		
+		addKeyListener(new UserInput());
 	}
 
 	public void printArray(String[][] world) {
@@ -45,12 +41,7 @@ public class Screen extends JTextPane {
 			for (int i = world.length; i > 0; i--) {
 				try {
 					if (ClientMain.getConnection().connected) {
-						w.getObjectAt(i + g.getPlayer().getX(), j + g.getPlayer().getY());
-						System.out.println(g.getPlayer().getX() + "   " + g.getPlayer().getY());
-						System.out.println((i - 1) + "   " + (j - 1));
-						if (i - 1 == g.getPlayer().getX() && j - 1 == g.getPlayer().getY()) {
-							world[i - 1][j - 1] = "@";
-						}
+						System.out.println("bleep bloop");
 					}
 					
 					doc.insertString(0, world[i - 1][j - 1], null);
@@ -93,13 +84,13 @@ public class Screen extends JTextPane {
 	}
 
 	public void init(String[][] world) {
-		for (int i = 0; i < world.length; i++) {
-			for (int j = 0; j < world[i].length; j++) {
-				world[i][j] = ".";
-			}
-		}
-		printArray(world);
-		System.out.println(getViewWidth() + "   " + getViewHeight());
+//		for (int i = 0; i < world.length; i++) {
+//			for (int j = 0; j < world[i].length; j++) {
+//				world[i][j] = ".";
+//			}
+//		}
+//		printArray(world);
+//		System.out.println(getViewWidth() + "   " + getViewHeight());
 	}
 
 }
