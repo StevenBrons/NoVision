@@ -21,8 +21,7 @@ public class Frame extends JFrame{
 		add(screen, BorderLayout.CENTER);
 		pack();
 
-		String[][] testArray = new String[500][500];
-		screen.init(testArray);
+		screen.init();
 	}
 
 	public Screen getScreen() {

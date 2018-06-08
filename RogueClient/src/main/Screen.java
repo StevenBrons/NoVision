@@ -2,12 +2,19 @@ package main;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JTextPane;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.MutableAttributeSet;
 import javax.swing.text.Style;
+import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
+
+import game.World;
+import transfer.P;
 
 public class Screen extends JTextPane {
 
@@ -16,38 +23,50 @@ public class Screen extends JTextPane {
 	private int fontWidth = -1;
 	private int fontHeight = 12;
 	private Style style;
-	private Font font = new Font("monospaced", Font.PLAIN, 12);
+	private Font font = new Font("monospaced", Font.PLAIN, fontHeight);
+	private String[][] view;
 
 	public Screen() {
-		setForeground(Color.WHITE);
 		setBackground(Color.BLACK);
-		addStyle("style", null);
+		style = addStyle("style", null);
+		StyleConstants.setLineSpacing(style, 0);
+		StyleConstants.setForeground(style, Color.WHITE);
+		StyleConstants.setFontFamily(style, "monospaced");
+		StyleConstants.setFontSize(style, fontHeight);
+		setParagraphAttributes(style, true);
 		setFont(font);
 		
 		addKeyListener(new UserInput());
+		
+		addMouseWheelListener(new MouseWheelListener() {
+			
+			@Override
+			public void mouseWheelMoved(MouseWheelEvent arg0) {
+				StyleConstants.setFontSize(style, fontHeight++);
+				init();
+			}
+		});
 	}
 
-	public void printArray(String[][] world) {
+	public void printArray() {
 		clearScreen();
 		StyledDocument doc = getStyledDocument();
-		String[][] view = new String[getViewWidth()][getViewHeight()];
 
-		for (int j = world.length; j > 0; j--) {
+		for (int j = view[0].length - 1; j >= 0; j--) {
 			try {
 				doc.insertString(0, "\n", null);
 			} catch (BadLocationException e) {
 				e.printStackTrace();
 			}
-			for (int i = world.length; i > 0; i--) {
+			for (int i = view.length - 1; i >= 0; i--) {
 				try {
 					if (ClientMain.getConnection().connected) {
-						System.out.println("bleep bloop");
+						
 					}
 					
-					doc.insertString(0, world[i - 1][j - 1], null);
+					doc.insertString(0, view[i][j], style);
 					
 					
-//					doc.insertString(0, view[i - 1][j - 1], null);
 				} catch (BadLocationException e) {
 					e.printStackTrace();
 				}
@@ -69,8 +88,9 @@ public class Screen extends JTextPane {
 		return fontWidth;
 	}
 
-	public int getFontHeight() { //dit kan naar beneden afgerond worden, willen we wat padding toevoegen? (gwn met +x erachter toch?)
-		return fontHeight;
+	public int getFontHeight() {
+		System.out.println(StyleConstants.getFontSize(style));
+		return fontHeight + 5;
 
 	}
 
@@ -82,15 +102,26 @@ public class Screen extends JTextPane {
 	public int getViewHeight() {
 		return (int) Math.floor(getHeight() / getFontHeight());
 	}
-
-	public void init(String[][] world) {
-//		for (int i = 0; i < world.length; i++) {
-//			for (int j = 0; j < world[i].length; j++) {
-//				world[i][j] = ".";
-//			}
-//		}
-//		printArray(world);
-//		System.out.println(getViewWidth() + "   " + getViewHeight());
+	
+	public void init() {
+		view = new String[getViewWidth()][getViewHeight()];
+		makeWorldView(null);
+		System.out.println(getViewWidth() + "   " + getViewHeight());
+	}
+	
+	public void makeWorldView(String[][] world) {
+		
+		for (int i = 0; i < view.length; i++) {
+			for (int j = 0; j < view[i].length; j++) {
+				view[i][j] = "o";
+			}
+		}
+		
+		printArray();
+	}
+	
+	public void setChar() {
+		
 	}
 
 }
