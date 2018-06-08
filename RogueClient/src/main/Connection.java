@@ -1,11 +1,10 @@
-package connection;
+package main;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 import game.World;
-import main.ClientMain;
 import transfer.C;
 import transfer.P;
 

@@ -1,10 +1,10 @@
 package objects;
 
-public class Null extends Obj{
+public class Stone extends Obj{
 
 	@Override
 	public char getDisplay() {
-		return (char) 'O';
+		return 'S';
 	}
 	
 }

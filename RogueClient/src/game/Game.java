@@ -4,7 +4,7 @@ import transfer.P;
 
 public class Game {
 
-	private World world = new World();
+	private World world;
 	private P player;
 	
 	public Game() {

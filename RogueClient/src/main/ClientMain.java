@@ -1,5 +1,4 @@
 package main;
-import connection.Connection;
 import game.Game;
 import transfer.L;
 

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import objects.Null;
 import objects.Obj;
+import objects.Stone;
 import transfer.C;
 
 public class Chunk{
@@ -25,7 +26,7 @@ public class Chunk{
 	private void clear() {
 		for (int x = 0; x < objects.length; x++) {
 			for (int y = 0; y < objects[x].length; y++) {
-				objects[x][y] = new Null();
+				objects[x][y] = new Stone();
 				reportChange(x, y);
 			}	
 		}
@@ -44,11 +45,11 @@ public class Chunk{
 	}
 
 	private int toRelX(int x) {
-		return x - (SIZE * x);
+		return x - (SIZE * getX());
 	}
 	
 	private int toRelY(int y) {
-		return y - (SIZE * y);
+		return y - (SIZE * getY());
 	}
 	
 	public Obj getObjectAt(int x, int y) {

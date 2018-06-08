@@ -2,6 +2,7 @@ package main;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import game.World;
 import transfer.A;
 import transfer.P;
 
@@ -13,7 +14,6 @@ public class UserInput implements KeyListener{
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		ClientMain.output("Key pressed");
 		String action = KeyPreferences.getAction(e.getKeyCode());
 		if (action != null) {
 			ClientMain.getConnection().output(new A(action,"","",0));

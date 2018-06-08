@@ -14,7 +14,7 @@ public class O implements Serializable {
 	private int x;
 	private int y;
 
-	private char display = (char) 0;
+	private char display;
 
 	public O(char display,int x, int y) {
 		this.display = display;

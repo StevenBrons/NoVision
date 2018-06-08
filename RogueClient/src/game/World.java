@@ -28,7 +28,7 @@ public class World {
 				return c.getObjectAt(x, y);
 			}
 		}
-		return new O((char) 2,x,y);
+		return new O((char) '!',x,y);
 	}
 	
 }
