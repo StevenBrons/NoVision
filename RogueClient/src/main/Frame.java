@@ -20,10 +20,8 @@ public class Frame extends JFrame{
 		setLayout(new BorderLayout());
 		add(screen, BorderLayout.CENTER);
 		pack();
-
-		screen.init();
 	}
-
+	
 	public Screen getScreen() {
 		return screen;
 	}

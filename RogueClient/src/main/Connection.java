@@ -68,6 +68,7 @@ public class Connection {
 			World.setChunk(((C) o));
 			break;
 		case "transfer.P":
+			ClientMain.getGame().run();
 			ClientMain.getGame().setPlayer((P) o);
 			break;
 		default:

@@ -1,7 +1,10 @@
 package main;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.awt.image.BufferedImage;
@@ -24,53 +27,57 @@ public class Screen extends JTextPane {
 	private int fontHeight = 12;
 	private Style style;
 	private Font font = new Font("monospaced", Font.PLAIN, fontHeight);
-	private String[][] view;
+	private char[][] view;
 
 	public Screen() {
 		setBackground(Color.BLACK);
 		style = addStyle("style", null);
-		StyleConstants.setLineSpacing(style, 0);
+		StyleConstants.setLineSpacing(style, 0.0f);
 		StyleConstants.setForeground(style, Color.WHITE);
 		StyleConstants.setFontFamily(style, "monospaced");
 		StyleConstants.setFontSize(style, fontHeight);
+		setEditable(false);
+		setHighlighter(null);
 		setParagraphAttributes(style, true);
 		setFont(font);
-		
 		addKeyListener(new UserInput());
-		
-		addMouseWheelListener(new MouseWheelListener() {
+
+		addComponentListener(new ComponentListener() {
 			
 			@Override
-			public void mouseWheelMoved(MouseWheelEvent arg0) {
-				StyleConstants.setFontSize(style, fontHeight++);
+			public void componentShown(ComponentEvent e) {
+			}
+			
+			@Override
+			public void componentResized(ComponentEvent e) {
 				init();
 			}
+			
+			@Override
+			public void componentMoved(ComponentEvent e) {
+			}
+			
+			@Override
+			public void componentHidden(ComponentEvent e) {
+			}
 		});
+		
 	}
 
 	public void printArray() {
-		clearScreen();
 		StyledDocument doc = getStyledDocument();
-
-		for (int j = view[0].length - 1; j >= 0; j--) {
-			try {
-				doc.insertString(0, "\n", null);
-			} catch (BadLocationException e) {
-				e.printStackTrace();
+		StringBuffer buffer = new StringBuffer();
+		for (int j = 0; j < view[0].length; j++) {
+			for (int i = 0; i < view.length; i++) {
+				buffer.append(view[i][j]);
 			}
-			for (int i = view.length - 1; i >= 0; i--) {
-				try {
-					if (ClientMain.getConnection().connected) {
-						
-					}
-					
-					doc.insertString(0, view[i][j], style);
-					
-					
-				} catch (BadLocationException e) {
-					e.printStackTrace();
-				}
-			}
+			buffer.append('\n');
+		}
+		clearScreen();
+		try {
+			doc.insertString(0, buffer.toString(), style);
+		} catch (BadLocationException e) {
+			e.printStackTrace();
 		}
 
 	}
@@ -89,8 +96,8 @@ public class Screen extends JTextPane {
 	}
 
 	public int getFontHeight() {
-		System.out.println(StyleConstants.getFontSize(style));
-		return fontHeight + 5;
+		return (int) (StyleConstants.getFontSize(style) + StyleConstants.getSpaceBelow(style)
+				+ StyleConstants.getSpaceAbove(style) + 5);
 
 	}
 
@@ -102,26 +109,27 @@ public class Screen extends JTextPane {
 	public int getViewHeight() {
 		return (int) Math.floor(getHeight() / getFontHeight());
 	}
-	
+
 	public void init() {
-		view = new String[getViewWidth()][getViewHeight()];
-		makeWorldView(null);
-		System.out.println(getViewWidth() + "   " + getViewHeight());
+		view = new char[getViewWidth()][getViewHeight()];
+		makeAll();
 	}
-	
+
 	public void makeWorldView(String[][] world) {
-		
 		for (int i = 0; i < view.length; i++) {
 			for (int j = 0; j < view[i].length; j++) {
-				view[i][j] = "o";
+				setCharAt((char) (Math.floor(Math.random() * 50) + 60), i, j);
 			}
 		}
-		
-		printArray();
 	}
-	
-	public void setChar() {
-		
+
+	public void setCharAt(char c,int i, int j) {
+		view[i][j] = c;
+	}
+
+	public void makeAll() {
+		makeWorldView(null);
+		printArray();
 	}
 
 }
