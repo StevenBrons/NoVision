@@ -17,8 +17,16 @@ public class Player extends Entity {
 	private Client client;
 	private ArrayList<Chunk> chunksInViewPort = new ArrayList<>();
 
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
 	public Player(Client client) {
-		this.setClient(client);
+		this.client = client;
 	}
 
 	public void destroy() {
@@ -43,24 +51,20 @@ public class Player extends Entity {
 		getActions().get(action.getName()).invoke(this);
 	}
 
-	public Client getClient() {
-		return client;
-	}
-
-	public void setClient(Client client) {
-		this.client = client;
-	}
-
 	public void updateChunksInViewPort(World world) {
 		for (int x = -1; x < 2; x++) {
 			for (int y = -1; y < 2; y++) {
 				Chunk c = world.getChunkAt(this.getX() + x * Chunk.SIZE, this.getY() + y * Chunk.SIZE);
-				chunksInViewPort.add(c);
-				if (chunksInViewPort.size() > MAX_CHUNKS) {
-					chunksInViewPort.remove(0);
+				if (!chunksInViewPort.contains(c)) {
+					chunksInViewPort.add(c);
+					client.output(c.toClientChunk());
+					if (chunksInViewPort.size() > MAX_CHUNKS) {
+						chunksInViewPort.remove(0);
+					}
 				}
 			}
 		}
+		
 	}
 
 	public ArrayList<Chunk> getChunksInViewPort() {

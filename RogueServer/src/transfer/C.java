@@ -33,9 +33,17 @@ public class C implements Serializable {
 	}
 
 	public O getObjectAt(int x, int y) {
-		return objects[x][y];
+		return objects[toRelX(x)][toRelY(y)];
 	}
 
+	private int toRelX(int x) {
+		return x - (SIZE * getX());
+	}
+	
+	private int toRelY(int y) {
+		return y - (SIZE * getY());
+	}
+	
 	public int getX() {
 		return chunkX;
 	}

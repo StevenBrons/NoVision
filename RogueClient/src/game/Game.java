@@ -5,7 +5,7 @@ import transfer.P;
 
 public class Game {
 
-	private World world;
+	private World world = new World();
 	private P player;
 
 	public Game() {
@@ -23,21 +23,8 @@ public class Game {
 		return player;
 	}
 
-	public void run() {
-		Thread thread = new Thread(new Runnable() {
-			@Override
-			public void run() {
-				while (true) {
-					ClientMain.getFrame().getScreen().makeAll();
-					try {
-						Thread.sleep(100);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-				}
-			}
-		});
-		thread.start();
+	public void start() {
+		ClientMain.getFrame().getScreen().makeAll();
 	}
 
 }

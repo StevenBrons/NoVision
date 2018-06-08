@@ -10,8 +10,6 @@ public class Obj{
 	private int x;
 	private int y;
 	
-	private char display;
-	
 	private HashMap<String, Action> actions = new HashMap<>();
 
 	public Obj() {
@@ -34,7 +32,7 @@ public class Obj{
 	}
 	
 	public char getDisplay() {
-		return display;
+		return '*';
 	}
 	
 	public HashMap<String, Action> getActions() {
@@ -53,6 +51,6 @@ public class Obj{
 	}
 	
 	public O toClientObject() {
-		return new O(display, x, y);
+		return new O(getDisplay(), x, y);
 	}
 }

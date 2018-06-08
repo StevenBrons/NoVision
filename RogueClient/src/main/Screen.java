@@ -71,7 +71,7 @@ public class Screen extends JTextPane {
 			for (int i = 0; i < view.length; i++) {
 				buffer.append(view[i][j]);
 			}
-			buffer.append('\n');
+			buffer.append("\n");
 		}
 		clearScreen();
 		try {
@@ -115,10 +115,11 @@ public class Screen extends JTextPane {
 		makeAll();
 	}
 
-	public void makeWorldView(String[][] world) {
+	public void makeWorldView() {
+		World world = ClientMain.getGame().getWorld();
 		for (int i = 0; i < view.length; i++) {
 			for (int j = 0; j < view[i].length; j++) {
-				setCharAt((char) (Math.floor(Math.random() * 50) + 60), i, j);
+				setCharAt(world.getObjectAt(i, j).getDisplay(), i, j);
 			}
 		}
 	}
@@ -128,7 +129,7 @@ public class Screen extends JTextPane {
 	}
 
 	public void makeAll() {
-		makeWorldView(null);
+		makeWorldView();
 		printArray();
 	}
 

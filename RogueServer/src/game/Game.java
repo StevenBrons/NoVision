@@ -55,6 +55,7 @@ public class Game {
 	}
 
 	public void addPlayer(Player player) {
+		player.updateChunksInViewPort(world);
 		world.setObjectAt(player, 0, 0);
 		players.add(player);
 	}
