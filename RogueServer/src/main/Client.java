@@ -61,7 +61,7 @@ public class Client {
 			player = new Player(this);
 			ServerMain.getGame().addPlayer(player);
 			output(player.toClientObject());
-			break;
+			break;	
 		case "transfer.A":
 			player.execute((A) o);
 			break;
