@@ -1,13 +1,12 @@
 package transfer;
 
-import java.io.Serializable;
 
 /*
  * This class is used to transfer login data
 */
 
 
-public class L implements Serializable{
+public class L extends T{
 	/**
 	 * 
 	 */

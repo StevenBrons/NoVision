@@ -1,13 +1,11 @@
 package transfer;
 
-import java.io.Serializable;
-
 /*
  * This class is used to transfer chunk data
  * it is a simplified version of the Chunk class
 */
 
-public class C implements Serializable {
+public class C extends T {
 
 	/**
 	 * 
@@ -27,8 +25,8 @@ public class C implements Serializable {
 	}
 
 	public void setObjectAt(O obj, int x, int y) {
-		int relX = x - (SIZE * x);
-		int relY = y - (SIZE * y);
+		int relX = x;
+		int relY = y;
 		objects[relX][relY] = obj;
 	}
 

@@ -1,13 +1,11 @@
 package transfer;
 
-import java.io.Serializable;
-
 /*
  * This class is used to transfer object data
  * it is a simplified version of the Object class
 */
 
-public class O implements Serializable {
+public class O extends T {
 
 	private static final long serialVersionUID = 1L;
 
