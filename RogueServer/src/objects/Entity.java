@@ -16,7 +16,7 @@ public class Entity extends Obj {
 			}
 
 			@Override
-			public void resolve() {
+			public void resolve(Obj executor) {
 				System.out.println("RESOLVED");
 			}
 
@@ -26,7 +26,7 @@ public class Entity extends Obj {
 			}
 
 			@Override
-			public void reject() {
+			public void reject(Obj executor) {
 				System.out.println("REJECTED");
 			}
 		});
@@ -39,11 +39,11 @@ public class Entity extends Obj {
 			}
 
 			@Override
-			public void resolve() {
+			public void resolve(Obj executor) {
 			}
 
 			@Override
-			public void reject() {
+			public void reject(Obj executor) {
 			}
 		});
 
@@ -55,11 +55,11 @@ public class Entity extends Obj {
 			}
 
 			@Override
-			public void resolve() {
+			public void resolve(Obj executor) {
 			}
 
 			@Override
-			public void reject() {
+			public void reject(Obj executor) {
 			}
 		});
 
@@ -71,11 +71,11 @@ public class Entity extends Obj {
 			}
 
 			@Override
-			public void resolve() {
+			public void resolve(Obj executor) {
 			}
 
 			@Override
-			public void reject() {
+			public void reject(Obj executor) {
 			}
 		});
 	}

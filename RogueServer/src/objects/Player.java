@@ -17,6 +17,26 @@ public class Player extends Entity {
 	private Client client;
 	private ArrayList<Chunk> chunksInViewPort = new ArrayList<>();
 
+	public Player(Client client) {
+		this.client = client;
+		this.addAction("openInventory", new Action() {
+			
+			@Override
+			public void resolve(Obj executor) {
+				
+			}
+			
+			@Override
+			public void reject(Obj executor) {
+			}
+			
+			@Override
+			public String getTitle() {
+				return "Open inventory";
+			}
+		});
+	}
+
 	public Client getClient() {
 		return client;
 	}
@@ -24,11 +44,7 @@ public class Player extends Entity {
 	public void setClient(Client client) {
 		this.client = client;
 	}
-
-	public Player(Client client) {
-		this.client = client;
-	}
-
+	
 	public void destroy() {
 		ServerMain.getGame().getPlayers().remove(this);
 	}

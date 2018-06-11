@@ -1,12 +1,10 @@
 package transfer;
 
-import java.io.Serializable;
-
 /*
  * This class is used to bundle multiple transfer objects as one update
 */
 
-public class U implements Serializable {
+public class U extends T {
 
 	/**
 	 * 

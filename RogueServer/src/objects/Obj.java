@@ -1,9 +1,9 @@
 package objects;
-import java.io.Serializable;
 import java.util.HashMap;
 
 import game.Action;
 import transfer.O;
+import transfer.T;
 
 public class Obj{
 
@@ -11,7 +11,7 @@ public class Obj{
 	private int y;
 	
 	private HashMap<String, Action> actions = new HashMap<>();
-
+	
 	public Obj() {
 	}
 	
@@ -48,6 +48,10 @@ public class Obj{
 	}
 
 	public void update() {
+	}
+	
+	public void input(T update) {
+		
 	}
 	
 	public O toClientObject() {

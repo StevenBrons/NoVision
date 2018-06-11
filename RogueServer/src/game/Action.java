@@ -15,9 +15,9 @@ public interface Action {
 
 	public default void invoke(Obj executor, String... args) {
 		if (Math.random() < getSuccessChance()) {
-			resolve();
+			resolve(executor);
 		} else {
-			reject();
+			reject(executor);
 		}
 	}
 
@@ -25,9 +25,9 @@ public interface Action {
 		return 1;
 	}
 
-	public void resolve();
+	public void resolve(Obj executor);
 
-	public void reject();
+	public void reject(Obj executor);
 
 	public static A[] getClientActions(HashMap<String, Action> actions) {
 		A[] acs = new A[actions.size()];
