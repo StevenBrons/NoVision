@@ -5,8 +5,10 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 import game.World;
+import transfer.A;
 import transfer.C;
 import transfer.P;
+import transfer.U;
 
 public class Connection {
 
@@ -70,6 +72,11 @@ public class Connection {
 		case "transfer.P":
 			ClientMain.getGame().start();
 			ClientMain.getGame().setPlayer((P) o);
+			break;
+		case "transfer.U":
+			System.out.println("Title:" + ((U) o).getTitle());
+			System.out.println("Description:" + ((U) o).getDescription());
+			System.out.println("Actions:" + ((U) o).getActions().length);
 			break;
 		default:
 			System.err.println(o.getClass().getName());

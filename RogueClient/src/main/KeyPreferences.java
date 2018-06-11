@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 public class KeyPreferences {
 	
 	static KeyPreference[] preferences = {
+		new KeyPreference("openInventory", KeyEvent.VK_I),
 		new KeyPreference("moveNorth", KeyEvent.VK_W),
 		new KeyPreference("moveEast", KeyEvent.VK_D),
 		new KeyPreference("moveSouth", KeyEvent.VK_S),

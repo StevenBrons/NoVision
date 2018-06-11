@@ -3,11 +3,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.nio.ByteBuffer;
 
-import javax.swing.ButtonGroup;
-
-import game.Chunk;
 import objects.Player;
 import transfer.A;
 import transfer.L;

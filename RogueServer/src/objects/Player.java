@@ -10,24 +10,27 @@ import main.ServerMain;
 import transfer.A;
 import transfer.O;
 import transfer.P;
+import transfer.T;
+import transfer.U;
 
 public class Player extends Entity {
 
 	private static final int MAX_CHUNKS = 9;
 	private Client client;
 	private ArrayList<Chunk> chunksInViewPort = new ArrayList<>();
-
+	
 	public Player(Client client) {
 		this.client = client;
 		this.addAction("openInventory", new Action() {
 			
 			@Override
-			public void resolve(Obj executor) {
-				
+			public T resolve(Obj executor) {
+				return new U("Open inventory", "joehoe");
 			}
 			
 			@Override
-			public void reject(Obj executor) {
+			public T reject(Obj executor) {
+				return null;
 			}
 			
 			@Override
@@ -54,17 +57,13 @@ public class Player extends Entity {
 		return super.equals(obj);
 	}
 
-	public void execute(String name, String... args) {
-		getActions().get(name).invoke(this, args);
-	}
-
 	@Override
 	public O toClientObject() {
 		return new P(getDisplay(), getX(), getY(), Action.getClientActions(getActions()));
 	}
 
 	public void execute(A action) {
-		getActions().get(action.getName()).invoke(this);
+		client.output(getActions().get(action.getName()).invoke(this));
 	}
 
 	public void updateChunksInViewPort(World world) {

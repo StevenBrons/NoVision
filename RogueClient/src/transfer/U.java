@@ -1,11 +1,10 @@
 package transfer;
 
-import java.io.Serializable;
 /*
  * This class is used to bundle multiple transfer objects as one update
 */
 
-public class U implements Serializable {
+public class U extends T {
 
 	/**
 	 * 
@@ -14,23 +13,18 @@ public class U implements Serializable {
 
 	private String title;
 	private String description;
-	private T[] updates;
+	private A[] actions;
 
+	public U(String title, String description, A[] actions) {
+		this.title = title;
+		this.description = description;
+		this.actions = actions;
+	}
+	
 	public U(String title, String description) {
 		this.title = title;
 		this.description = description;
-	}
-
-	public void addUpdate(T trans) {
-		if (updates == null) {
-			updates = new T[1];
-			updates[0] = trans;
-		} else {
-			T[] temp = updates;
-			updates = new T[updates.length + 1];
-			System.arraycopy(temp, 0, updates, 0, temp.length);
-			updates[updates.length - 1] = trans;
-		}
+		this.actions = new A[0];
 	}
 
 	public String getTitle() {
@@ -41,8 +35,8 @@ public class U implements Serializable {
 		return description;
 	}
 
-	public T[] getUpdates() {
-		return updates;
+	public T[] getActions() {
+		return actions;
 	}
 
 }

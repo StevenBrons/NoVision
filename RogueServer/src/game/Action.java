@@ -4,6 +4,8 @@ import java.util.HashMap;
 
 import objects.Obj;
 import transfer.A;
+import transfer.T;
+import transfer.U;
 
 public interface Action {
 
@@ -13,11 +15,21 @@ public interface Action {
 		return "";
 	}
 
-	public default void invoke(Obj executor, String... args) {
+	public default T invoke(Obj executor, String... args) {
 		if (Math.random() < getSuccessChance()) {
-			resolve(executor);
+			T result = resolve(executor);
+			if (result != null) {
+				return result;
+			}else {
+				return new U("Success","");
+			}
 		} else {
-			reject(executor);
+			T result = reject(executor);
+			if (result != null) {
+				return result;
+			}else {
+				return new U("Failure","");
+			}
 		}
 	}
 
@@ -25,9 +37,9 @@ public interface Action {
 		return 1;
 	}
 
-	public void resolve(Obj executor);
+	public T resolve(Obj executor);
 
-	public void reject(Obj executor);
+	public T reject(Obj executor);
 
 	public static A[] getClientActions(HashMap<String, Action> actions) {
 		A[] acs = new A[actions.size()];

@@ -1,5 +1,7 @@
 package objects;
 import game.Action;
+import transfer.T;
+import transfer.U;
 
 public class Entity extends Obj {
 
@@ -16,8 +18,8 @@ public class Entity extends Obj {
 			}
 
 			@Override
-			public void resolve(Obj executor) {
-				System.out.println("RESOLVED");
+			public T resolve(Obj executor) {
+				return null;
 			}
 
 			@Override
@@ -26,8 +28,8 @@ public class Entity extends Obj {
 			}
 
 			@Override
-			public void reject(Obj executor) {
-				System.out.println("REJECTED");
+			public T reject(Obj executor) {
+				return null;
 			}
 		});
 
@@ -39,11 +41,13 @@ public class Entity extends Obj {
 			}
 
 			@Override
-			public void resolve(Obj executor) {
+			public T resolve(Obj executor) {
+				return null;
 			}
 
 			@Override
-			public void reject(Obj executor) {
+			public T reject(Obj executor) {
+				return null;
 			}
 		});
 
@@ -55,15 +59,17 @@ public class Entity extends Obj {
 			}
 
 			@Override
-			public void resolve(Obj executor) {
+			public T resolve(Obj executor) {
+				return null;
 			}
 
 			@Override
-			public void reject(Obj executor) {
+			public T reject(Obj executor) {
+				return null;
 			}
 		});
 
-		addAction("moveWidth", new Action() {
+		addAction("moveWest", new Action() {
 
 			@Override
 			public String getTitle() {
@@ -71,11 +77,13 @@ public class Entity extends Obj {
 			}
 
 			@Override
-			public void resolve(Obj executor) {
+			public T resolve(Obj executor) {
+				return null;
 			}
 
 			@Override
-			public void reject(Obj executor) {
+			public T reject(Obj executor) {
+				return null;
 			}
 		});
 	}
