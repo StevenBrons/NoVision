@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import objects.Null;
 import objects.Obj;
+import transfer.C;
 
 public class World {
 
@@ -21,16 +22,16 @@ public class World {
 
 	public Obj getObjectAt(int x, int y) {
 		for (Chunk c : chunks) {
-			if (Math.floor(x / Chunk.SIZE) == c.getX() && Math.floor(y / Chunk.SIZE) == c.getY()) {
+			if (toChunkPos(x) == c.getX() && toChunkPos(y) == c.getY()) {
 				return c.getObjectAt(x, y);
 			}
 		}
 		return new Null();
 	}
-	
-	public void setObjectAt(Obj obj,int x, int y) {
+
+	public void setObjectAt(Obj obj, int x, int y) {
 		for (Chunk c : chunks) {
-			if (Math.floor(x / Chunk.SIZE) == c.getX() && Math.floor(y / Chunk.SIZE) == c.getY()) {
+			if (toChunkPos(x) == c.getX() && toChunkPos(y) == c.getY()) {
 				c.setObjectAt(obj, x, y);
 			}
 		}
@@ -48,11 +49,21 @@ public class World {
 
 	public Chunk getChunkAt(int x, int y) {
 		for (Chunk c : chunks) {
-			if (Math.floor(x / Chunk.SIZE) == c.getX() && Math.floor(y / Chunk.SIZE) == c.getY()) {
+			if (toChunkPos(x) == c.getX() && toChunkPos(y) == c.getY()) {
 				return c;
 			}
 		}
-		return new Chunk((int) Math.floor(x / Chunk.SIZE), (int) Math.floor(y / Chunk.SIZE));
+		return new Chunk(toChunkPos(x), toChunkPos(y));
+	}
+
+	public static int toChunkPos(int i) {
+		return (int) Math.floor(i / (double) C.SIZE);
+	}
+
+	public void swapObjectsAt(int x, int y, int x2, int y2) {
+		Obj temp = getObjectAt(x, y);
+		setObjectAt(getObjectAt(x2, y2), x, y);
+		setObjectAt(temp, x2, y2);
 	}
 
 }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import main.ServerMain;
 import objects.Obj;
 import objects.Player;
+import transfer.T;
 
 public class Game {
 
@@ -40,6 +41,10 @@ public class Game {
 		world.update();
 	}
 
+	public World getWorld() {
+		return world;
+	}
+	
 	public void emit() {
 		for (Player player : players) {
 			for (Chunk chunk : player.getChunksInViewPort()) {
@@ -47,6 +52,10 @@ public class Game {
 					player.getClient().output(obj.toClientObject());
 				}
 			}
+			for (T update:player.getUpdates()) {
+				player.getClient().output(update);
+			}
+			player.clearUpdates();
 		}
 		for (Chunk chunk : world.getChunks()) {
 			chunk.clearChanges();
@@ -55,9 +64,10 @@ public class Game {
 	}
 
 	public void addPlayer(Player player) {
-		player.updateChunksInViewPort(world);
 		world.setObjectAt(player, 0, 0);
 		players.add(player);
+		player.updateChunksInViewPort(world);
+		start();
 	}
 
 	public ArrayList<Player> getPlayers() {

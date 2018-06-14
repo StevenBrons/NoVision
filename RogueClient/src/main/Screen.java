@@ -16,7 +16,9 @@ import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
+import game.Game;
 import game.World;
+import transfer.O;
 import transfer.P;
 
 public class Screen extends JTextPane {
@@ -24,7 +26,7 @@ public class Screen extends JTextPane {
 	private static final long serialVersionUID = 1L;
 
 	private int fontWidth = -1;
-	private int fontHeight = 12;
+	private int fontHeight = 16;//12;
 	private Style style;
 	private Font font = new Font("monospaced", Font.PLAIN, fontHeight);
 	private char[][] view;
@@ -116,21 +118,35 @@ public class Screen extends JTextPane {
 	}
 
 	public void makeWorldView() {
-		World world = ClientMain.getGame().getWorld();
-		for (int i = 0; i < view.length; i++) {
-			for (int j = 0; j < view[i].length; j++) {
-				setCharAt(world.getObjectAt(i, j).getDisplay(), i, j);
+		Game game = ClientMain.getGame();
+		if (game.getPlayer() != null) {
+			for (int i = 0; i < view.length; i++) {
+				for (int j = 0; j < view[i].length; j++) {
+					int x = i + game.getPlayer().getX() - (getViewWidth() / 2);
+					int y = j + game.getPlayer().getY() - (getViewHeight() / 2);
+					O obj = game.getWorld().getObjectAt(x, y);
+					setCharAt(obj.getDisplay(), i, j);
+				}
 			}
 		}
 	}
 
 	public void setCharAt(char c,int i, int j) {
-		view[i][j] = c;
+		if (i < view.length && i >= 0 && j < view[i].length && j >= 0) {
+			view[i][j] = c;
+		}
 	}
 
 	public void makeAll() {
 		makeWorldView();
 		printArray();
+	}
+
+	public void updateObject(O obj) {
+		Game game = ClientMain.getGame();
+		int x = obj.getX() - game.getPlayer().getX() + (getViewWidth() / 2);
+		int y = obj.getY() - game.getPlayer().getY() + (getViewHeight() / 2);
+		setCharAt(obj.getDisplay(), x, y);
 	}
 
 }

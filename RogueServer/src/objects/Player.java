@@ -18,18 +18,19 @@ public class Player extends Entity {
 	private static final int MAX_CHUNKS = 9;
 	private Client client;
 	private ArrayList<Chunk> chunksInViewPort = new ArrayList<>();
-	
+	private ArrayList<T> updates = new ArrayList<>();
+
 	public Player(Client client) {
 		this.client = client;
 		this.addAction("openInventory", new Action() {
 			
 			@Override
-			public T resolve(Obj executor) {
+			public T resolve(Obj executor,World world) {
 				return new U("Open inventory", "joehoe");
 			}
 			
 			@Override
-			public T reject(Obj executor) {
+			public T reject(Obj executor,World world) {
 				return null;
 			}
 			
@@ -58,12 +59,17 @@ public class Player extends Entity {
 	}
 
 	@Override
+	public char getDisplay() {
+		return 'P';
+	}
+	
+	@Override
 	public O toClientObject() {
 		return new P(getDisplay(), getX(), getY(), Action.getClientActions(getActions()));
 	}
 
-	public void execute(A action) {
-		client.output(getActions().get(action.getName()).invoke(this));
+	public void execute(A action,World world) {
+		updates.add(getActions().get(action.getName()).invoke(this,world));
 	}
 
 	public void updateChunksInViewPort(World world) {
@@ -72,7 +78,7 @@ public class Player extends Entity {
 				Chunk c = world.getChunkAt(this.getX() + x * Chunk.SIZE, this.getY() + y * Chunk.SIZE);
 				if (!chunksInViewPort.contains(c)) {
 					chunksInViewPort.add(c);
-					client.output(c.toClientChunk());
+					updates.add(c.toClientChunk());
 					if (chunksInViewPort.size() > MAX_CHUNKS) {
 						chunksInViewPort.remove(0);
 					}
@@ -84,6 +90,14 @@ public class Player extends Entity {
 
 	public ArrayList<Chunk> getChunksInViewPort() {
 		return chunksInViewPort;
+	}
+
+	public ArrayList<T> getUpdates() {
+		return updates;
+	}
+
+	public void clearUpdates() {
+		updates.clear();
 	}
 
 }

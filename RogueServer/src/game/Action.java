@@ -15,16 +15,16 @@ public interface Action {
 		return "";
 	}
 
-	public default T invoke(Obj executor, String... args) {
+	public default T invoke(Obj executor, World world) {
 		if (Math.random() < getSuccessChance()) {
-			T result = resolve(executor);
+			T result = resolve(executor,world);
 			if (result != null) {
 				return result;
 			}else {
 				return new U("Success","");
 			}
 		} else {
-			T result = reject(executor);
+			T result = reject(executor,world);
 			if (result != null) {
 				return result;
 			}else {
@@ -37,9 +37,9 @@ public interface Action {
 		return 1;
 	}
 
-	public T resolve(Obj executor);
+	public T resolve(Obj executor, World world);
 
-	public T reject(Obj executor);
+	public T reject(Obj executor, World world);
 
 	public static A[] getClientActions(HashMap<String, Action> actions) {
 		A[] acs = new A[actions.size()];

@@ -4,9 +4,11 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+import game.Game;
 import game.World;
 import transfer.A;
 import transfer.C;
+import transfer.O;
 import transfer.P;
 import transfer.U;
 
@@ -65,18 +67,31 @@ public class Connection {
 	}
 
 	public void input(Object o) {
+		Game game = ClientMain.getGame();
 		switch (o.getClass().getName()) {
 		case "transfer.C":
+			System.out.println("Chunk");
 			World.setChunk(((C) o));
 			break;
 		case "transfer.P":
-			ClientMain.getGame().start();
-			ClientMain.getGame().setPlayer((P) o);
+			game.start();
+			game.setPlayer((P) o);
 			break;
 		case "transfer.U":
 			System.out.println("Title:" + ((U) o).getTitle());
 			System.out.println("Description:" + ((U) o).getDescription());
 			System.out.println("Actions:" + ((U) o).getActions().length);
+			break;
+		case "transfer.O":
+			O obj = (O) o;
+			game.getWorld().setObjectAt(obj,obj.getX(),obj.getY());
+			if (o instanceof P) {
+				ClientMain.getFrame().getScreen().makeWorldView();
+			}else {
+				ClientMain.getFrame().getScreen().makeWorldView();
+				//TODO: optimization: not always drawing whole world
+//				ClientMain.getFrame().getScreen().updateObject(obj);
+			}
 			break;
 		default:
 			System.err.println(o.getClass().getName());

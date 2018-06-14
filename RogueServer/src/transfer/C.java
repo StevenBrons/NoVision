@@ -14,8 +14,8 @@ public class C extends T {
 
 	public static final int SIZE = 64;
 
-	private int chunkX = 0;
-	private int chunkY = 0;
+	private int chunkX;
+	private int chunkY;
 
 	private O[][] objects = new O[64][64];
 
@@ -25,9 +25,7 @@ public class C extends T {
 	}
 
 	public void setObjectAt(O obj, int x, int y) {
-		int relX = x;
-		int relY = y;
-		objects[relX][relY] = obj;
+		objects[toRelX(x)][toRelY(y)] = obj;
 	}
 
 	public O getObjectAt(int x, int y) {

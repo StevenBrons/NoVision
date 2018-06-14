@@ -1,5 +1,7 @@
 package objects;
+
 import game.Action;
+import game.World;
 import transfer.T;
 import transfer.U;
 
@@ -18,18 +20,14 @@ public class Entity extends Obj {
 			}
 
 			@Override
-			public T resolve(Obj executor) {
-				return null;
+			public T resolve(Obj executor, World world) {
+				executor.moveTo(executor.getX(), executor.getY() + 1, world);
+				return new U("Move", "You moved north");
 			}
 
 			@Override
-			public float getSuccessChance() {
-				return 0.5f;
-			}
-
-			@Override
-			public T reject(Obj executor) {
-				return null;
+			public T reject(Obj executor, World world) {
+				return new U("Move", "You couldn't move north");
 			}
 		});
 
@@ -41,13 +39,14 @@ public class Entity extends Obj {
 			}
 
 			@Override
-			public T resolve(Obj executor) {
-				return null;
+			public T resolve(Obj executor, World world) {
+				executor.moveTo(executor.getX() + 1, executor.getY(), world);
+				return new U("Move", "You moved east");
 			}
 
 			@Override
-			public T reject(Obj executor) {
-				return null;
+			public T reject(Obj executor, World world) {
+				return new U("Move", "You couldn't move east");
 			}
 		});
 
@@ -59,13 +58,14 @@ public class Entity extends Obj {
 			}
 
 			@Override
-			public T resolve(Obj executor) {
-				return null;
+			public T resolve(Obj executor, World world) {
+				executor.moveTo(executor.getX(), executor.getY() - 1, world);
+				return new U("Move", "You moved south");
 			}
 
 			@Override
-			public T reject(Obj executor) {
-				return null;
+			public T reject(Obj executor, World world) {
+				return new U("Move", "You couldn't move south");
 			}
 		});
 
@@ -77,13 +77,14 @@ public class Entity extends Obj {
 			}
 
 			@Override
-			public T resolve(Obj executor) {
-				return null;
+			public T resolve(Obj executor, World world) {
+				executor.moveTo(executor.getX() - 1, executor.getY(), world);
+				return new U("Move", "You moved west");
 			}
 
 			@Override
-			public T reject(Obj executor) {
-				return null;
+			public T reject(Obj executor, World world) {
+				return new U("Move", "You couldn't move west");
 			}
 		});
 	}

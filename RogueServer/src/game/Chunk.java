@@ -53,7 +53,7 @@ public class Chunk{
 	}
 	
 	public Obj getObjectAt(int x, int y) {
-		return objects[x][y];
+		return objects[toRelX(x)][toRelY(y)];
 	}
 	
 	public int getX() {
@@ -76,15 +76,21 @@ public class Chunk{
 		C clientChunk = new C(chunkX, chunkY);
 		for (int x = 0; x < objects.length; x++) {
 			for (int y = 0; y < objects[x].length; y++) {
-				clientChunk.setObjectAt(objects[x][y].toClientObject(), x, y);
+				clientChunk.setObjectAt(objects[x][y].toClientObject(), x + getX() * SIZE, y + getY() * SIZE);
 			}	
 		}
 		return clientChunk;
 	}
 
 	private void reportChange(int x, int y) {
-		objects[x][y].setX(x);
-		objects[x][y].setY(y);
+		try {
+			objects[x][y].setX(x);
+		} catch (Exception e) {
+		}
+		try {
+			objects[x][y].setY(y);
+		} catch (Exception e) {
+		}
 		changes.add(objects[x][y]);
 	}
 	

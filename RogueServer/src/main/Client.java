@@ -59,7 +59,7 @@ public class Client {
 			output(player.toClientObject());
 			break;	
 		case "transfer.A":
-			player.execute((A) o);
+			player.execute((A) o,ServerMain.getGame().getWorld());
 			break;
 		default:
 			System.out.println("Unknown input class type: " + o.getClass().getName());

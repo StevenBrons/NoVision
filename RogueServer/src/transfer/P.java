@@ -12,7 +12,6 @@ public class P extends O {
 
 	private int x;
 	private int y;
-	private char display = (char) 0;
 	private A[] actions;
 	
 	public P(char display,int x, int y,A[] actions) {
@@ -26,10 +25,6 @@ public class P extends O {
 
 	public int getY() {
 		return y;
-	}
-
-	public char getDisplay() {
-		return display;
 	}
 
 	public A[] getActions() {
