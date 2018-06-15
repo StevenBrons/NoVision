@@ -47,8 +47,6 @@ public class Screen extends JTextPane {
 				try {
 					if (ClientMain.getConnection().connected) {
 						w.getObjectAt(i + g.getPlayer().getX(), j + g.getPlayer().getY());
-						System.out.println(g.getPlayer().getX() + "   " + g.getPlayer().getY());
-						System.out.println((i - 1) + "   " + (j - 1));
 						if (i - 1 == g.getPlayer().getX() && j - 1 == g.getPlayer().getY()) {
 							world[i - 1][j - 1] = "@";
 						}

@@ -65,4 +65,10 @@ public class Obj {
 	public O toClientObject() {
 		return new O(getDisplay(), x, y);
 	}
+	
+	@Override
+	public String toString() {
+		return "[" + getDisplay() + "] " + getX() + ":" + getY();
+	}
+	
 }

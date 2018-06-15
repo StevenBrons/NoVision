@@ -1,4 +1,5 @@
 package main;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -7,9 +8,11 @@ import java.net.Socket;
 import game.Game;
 import game.World;
 import transfer.A;
+import transfer.B;
 import transfer.C;
 import transfer.O;
 import transfer.P;
+import transfer.T;
 import transfer.U;
 
 public class Connection {
@@ -21,7 +24,7 @@ public class Connection {
 	public ObjectInputStream in;
 
 	public boolean connected = false;
-	
+
 	public Connection() {
 		Thread t = new Thread(new Runnable() {
 			@Override
@@ -35,7 +38,7 @@ public class Connection {
 					out = new ObjectOutputStream(socket.getOutputStream());
 					in = new ObjectInputStream(socket.getInputStream());
 					connected = true;
-					
+
 					while (true) {
 						try {
 							input(in.readObject());
@@ -66,36 +69,45 @@ public class Connection {
 		}
 	}
 
-	public void input(Object o) {
+	public void input(Object a) {
 		Game game = ClientMain.getGame();
-		switch (o.getClass().getName()) {
-		case "transfer.C":
-			System.out.println("Chunk");
-			World.setChunk(((C) o));
-			break;
-		case "transfer.P":
-			game.start();
-			game.setPlayer((P) o);
-			break;
-		case "transfer.U":
-			System.out.println("Title:" + ((U) o).getTitle());
-			System.out.println("Description:" + ((U) o).getDescription());
-			System.out.println("Actions:" + ((U) o).getActions().length);
-			break;
-		case "transfer.O":
-			O obj = (O) o;
-			game.getWorld().setObjectAt(obj,obj.getX(),obj.getY());
-			if (o instanceof P) {
+
+		B bundle = null;
+		if (!(a instanceof B)) {
+			bundle = new B();
+			bundle.addT((T) a);
+		} else {
+			bundle = (B) a;
+		}
+
+		for (T o : bundle.getBundle()) {
+			System.out.println();
+			switch (o.getClass().getName()) {
+			case "transfer.C":
+				World.setChunk(((C) o));
+				break;
+			case "transfer.U":
+				System.out.println("Title:" + ((U) o).getTitle());
+				System.out.println("Description:" + ((U) o).getDescription());
+				System.out.println("Actions:" + ((U) o).getActions().length);
+				break;
+			case "transfer.P":
+				if (game.getPlayer() == null) {
+					game.start();
+				}
+				game.setPlayer((P) o);
+			case "transfer.O":
+				O obj = (O) o;
+				System.out.println(obj.getDisplay() + ">" + obj.getX() + ":" + obj.getY());
+				game.getWorld().setObjectAt(obj, obj.getX(), obj.getY());
 				ClientMain.getFrame().getScreen().makeWorldView();
-			}else {
-				ClientMain.getFrame().getScreen().makeWorldView();
-				//TODO: optimization: not always drawing whole world
-//				ClientMain.getFrame().getScreen().updateObject(obj);
+				// TODO: optimization: not always drawing whole world
+				// ClientMain.getFrame().getScreen().updateObject(obj);
+				break;
+			default:
+				System.err.println(o.getClass().getName());
+				break;
 			}
-			break;
-		default:
-			System.err.println(o.getClass().getName());
-			break;
 		}
 	}
 

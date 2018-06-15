@@ -83,12 +83,13 @@ public class Chunk{
 	}
 
 	private void reportChange(int x, int y) {
+		System.out.println("Report: " + x + "-=" + y);
 		try {
-			objects[x][y].setX(x);
+			objects[x][y].setX(x + (SIZE * getX()));
 		} catch (Exception e) {
 		}
 		try {
-			objects[x][y].setY(y);
+			objects[x][y].setY(y + (SIZE * getY()));
 		} catch (Exception e) {
 		}
 		changes.add(objects[x][y]);

@@ -61,6 +61,7 @@ public class World {
 	}
 
 	public void swapObjectsAt(int x, int y, int x2, int y2) {
+		System.out.println("swap" + x + "," + y + "," + x2 + "," + y2);
 		Obj temp = getObjectAt(x, y);
 		setObjectAt(getObjectAt(x2, y2), x, y);
 		setObjectAt(temp, x2, y2);
