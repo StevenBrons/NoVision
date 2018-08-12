@@ -29,21 +29,6 @@ public class Game {
 	}
 
 	public void start() {
-//		Thread thread = new Thread(new Runnable() {
-//			
-//			@Override
-//			public void run() {
-//				while (true) {
-//					ClientMain.getFrame().getScreen().drawAll();
-//					try {
-//						Thread.sleep(100);
-//					} catch (InterruptedException e) {
-//						e.printStackTrace();
-//					}
-//				}
-//			}
-//		});
-//		thread.start();
 	}
 
 }
