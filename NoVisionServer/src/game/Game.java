@@ -63,7 +63,6 @@ public class Game {
 			}
 		}
 		world.clearChanges();
-
 	}
 
 	public void addPlayer(Player player) {

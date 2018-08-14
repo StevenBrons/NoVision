@@ -1,6 +1,7 @@
 package game;
 
-import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import objects.Null;
 import objects.Obj;
@@ -15,8 +16,8 @@ public class Chunk{
 	private int chunkY = 0;
 	
 	private Obj[][] objects = new Obj[64][64];
-	private ArrayList<Obj> changes = new ArrayList<>();
-
+	private List<Obj> changes = new CopyOnWriteArrayList<Obj>();
+	
 	public Chunk(int chunkX,int chunkY) {
 		this.chunkX = chunkX;
 		this.chunkY = chunkY;
@@ -94,7 +95,7 @@ public class Chunk{
 		changes.add(objects[x][y]);
 	}
 	
-	public ArrayList<Obj> getChanges() {
+	public List<Obj> getChanges() {
 		return changes;
 	}
 
